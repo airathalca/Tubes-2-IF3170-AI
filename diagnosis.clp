@@ -160,7 +160,7 @@
 (defrule Result7	
 	(matchID 7)
 	=>
-	(printout t "Hasil Prediksi: Healthy not Vaccinated or suspicious" crlf)
+	(printout t "Hasil Prediksi: Healthy not Vaccinated or Suspicious" crlf)
 	(assert(match yes)))	
 	
 (defrule startUp
