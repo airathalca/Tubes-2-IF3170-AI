@@ -8,15 +8,15 @@
 )
 
 (deffacts SymptomDiagnosis
-	(Diagnosis(diagnosis-name 0)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs1))			    ;Uncertain Configuration
-  (Diagnosis(diagnosis-name 0)(list-symptoms HBsAg1 AntiHDV0 AntiHBc0))				        ;Uncertain Configuration
-	(Diagnosis(diagnosis-name 1)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs0 IgMAntiHBc1))	;Acute Infection			
-	(Diagnosis(diagnosis-name 2)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs0 IgMAntiHBc0))	;Chronic Infection
-	(Diagnosis(diagnosis-name 3)(list-symptoms HBsAg1 AntiHDV1))			                    ;Hepatitis B+D
-	(Diagnosis(diagnosis-name 4)(list-symptoms HBsAg0 AntiHBs1 AntiHBc1)) 		                ;Cured
-	(Diagnosis(diagnosis-name 5)(list-symptoms HBsAg0 AntiHBs1 AntiHBc0))                       ;Vaccinated
-  (Diagnosis(diagnosis-name 6)(list-symptoms HBsAg0 AntiHBs0 AntiHBc1))                       ;Unclear (Possible resolved)
-  (Diagnosis(diagnosis-name 7)(list-symptoms HBsAg0 AntiHBs0 AntiHBc0))                       ;Healthy not Vaccinated or suspicious
+	(Diagnosis(diagnosis-name 0)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs1))			          ;Uncertain Configuration
+  (Diagnosis(diagnosis-name 0)(list-symptoms HBsAg1 AntiHDV0 AntiHBc0))				                  ;Uncertain Configuration
+	(Diagnosis(diagnosis-name 1)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs0 IgMAntiHBc1))	  ;Acute Infection			
+	(Diagnosis(diagnosis-name 2)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs0 IgMAntiHBc0))	  ;Chronic Infection
+	(Diagnosis(diagnosis-name 3)(list-symptoms HBsAg1 AntiHDV1))			                            ;Hepatitis B+D
+	(Diagnosis(diagnosis-name 4)(list-symptoms HBsAg0 AntiHBs1 AntiHBc1)) 		                    ;Cured
+	(Diagnosis(diagnosis-name 5)(list-symptoms HBsAg0 AntiHBs1 AntiHBc0))                         ;Vaccinated
+  (Diagnosis(diagnosis-name 6)(list-symptoms HBsAg0 AntiHBs0 AntiHBc1))                         ;Unclear (Possible resolved)
+  (Diagnosis(diagnosis-name 7)(list-symptoms HBsAg0 AntiHBs0 AntiHBc0))                         ;Healthy not Vaccinated or suspicious
 	(match inProgress))
 
 (deffunction AskQuestion (?question)
