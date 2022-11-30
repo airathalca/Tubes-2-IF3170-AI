@@ -42,7 +42,7 @@
 (defrule AskHBsAg
     (not(HBsAg ?))
     =>
-    (bind ?HBsAg (PositiveorNegative "HBsAg? "))
+    (bind ?HBsAg (PositiveorNegative "HBsAg? (positive/negative) "))
     (assert (HBsAg ?HBsAg))
     (if (eq ?HBsAg positive)
         then (assert (Symptoms(symptom-id HBsAg1)))
@@ -56,7 +56,7 @@
             (and (HBsAg negative))
             (and (HBsAg positive) (AntiHDV negative) (AntiHBc positive))))
     =>
-    (bind ?AntiHBs (PositiveorNegative "AntiHBs? "))
+    (bind ?AntiHBs (PositiveorNegative "AntiHBs? (positive/negative) "))
     (assert (AntiHBs ?AntiHBs))
     (if (eq ?AntiHBs positive)
         then (assert(Symptoms(symptom-id AntiHBs1)))
@@ -70,7 +70,7 @@
             (and (HBsAg negative) (AntiHBs ?))
             (and (HBsAg positive) (AntiHDV negative))))
     =>
-    (bind ?AntiHBc (PositiveorNegative "AntiHBc? "))
+    (bind ?AntiHBc (PositiveorNegative "AntiHBc? (positive/negative) "))
     (assert (AntiHBc ?AntiHBc))
     (if (eq ?AntiHBc positive)
         then (assert(Symptoms(symptom-id AntiHBc1)))
@@ -81,7 +81,7 @@
     (HBsAg positive)
     (not(AntiHDV ?))
     =>
-    (bind ?AntiHDV (PositiveorNegative "AntiHDV? "))
+    (bind ?AntiHDV (PositiveorNegative "AntiHDV? (positive/negative) "))
     (assert (AntiHDV ?AntiHDV))
     (if (eq ?AntiHDV positive)
         then (assert(Symptoms(symptom-id AntiHDV1)))
@@ -94,7 +94,7 @@
     (AntiHBs negative)
     (not(IgMAntiHBc ?))
     =>
-    (bind ?IgMAntiHBc (PositiveorNegative "IgMAntiHBc? "))
+    (bind ?IgMAntiHBc (PositiveorNegative "IgMAntiHBc? (positive/negative) "))
     (assert (IgMAntiHBc ?IgMAntiHBc))
     (if (eq ?IgMAntiHBc positive)
         then (assert(Symptoms(symptom-id IgMAntiHBc1)))
