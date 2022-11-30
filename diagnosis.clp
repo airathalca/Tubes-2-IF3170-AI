@@ -2,20 +2,21 @@
 	(slot diagnosis-name)
 	(multislot list-symptoms)
 )
+
 (deftemplate Symptoms
 	(slot symptom-id)
 )
 
 (deffacts SymptomDiagnosis
 	(Diagnosis(diagnosis-name 0)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs1))			    ;Uncertain Configuration
-    (Diagnosis(diagnosis-name 0)(list-symptoms HBsAg1 AntiHDV0 AntiHBc0))				        ;Uncertain Configuration
+  (Diagnosis(diagnosis-name 0)(list-symptoms HBsAg1 AntiHDV0 AntiHBc0))				        ;Uncertain Configuration
 	(Diagnosis(diagnosis-name 1)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs0 IgMAntiHBc1))	;Acute Infection			
 	(Diagnosis(diagnosis-name 2)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs0 IgMAntiHBc0))	;Chronic Infection
 	(Diagnosis(diagnosis-name 3)(list-symptoms HBsAg1 AntiHDV1))			                    ;Hepatitis B+D
 	(Diagnosis(diagnosis-name 4)(list-symptoms HBsAg0 AntiHBs1 AntiHBc1)) 		                ;Cured
 	(Diagnosis(diagnosis-name 5)(list-symptoms HBsAg0 AntiHBs1 AntiHBc0))                       ;Vaccinated
-    (Diagnosis(diagnosis-name 6)(list-symptoms HBsAg0 AntiHBs0 AntiHBc1))                       ;Unclear (Possible resolved)
-    (Diagnosis(diagnosis-name 7)(list-symptoms HBsAg0 AntiHBs0 AntiHBc0))                       ;Healthy not Vaccinated or suspicious
+  (Diagnosis(diagnosis-name 6)(list-symptoms HBsAg0 AntiHBs0 AntiHBc1))                       ;Unclear (Possible resolved)
+  (Diagnosis(diagnosis-name 7)(list-symptoms HBsAg0 AntiHBs0 AntiHBc0))                       ;Healthy not Vaccinated or suspicious
 	(match inProgress))
 
 (deffunction AskQuestion (?question)
@@ -47,6 +48,7 @@
         then (assert (Symptoms(symptom-id HBsAg1)))
         else (assert (Symptoms(symptom-id HBsAg0))))
 )
+
 (defrule AskAntiHBs
     (and 
         (not(AntiHBs ?))
@@ -54,12 +56,13 @@
             (and (HBsAg negative))
             (and (HBsAg positive) (AntiHDV negative) (AntiHBc positive))))
     =>
-    (bind ?AntiHBs (PositiveorNegative "AntiHBs?"))
+    (bind ?AntiHBs (PositiveorNegative "AntiHBs? "))
     (assert (AntiHBs ?AntiHBs))
     (if (eq ?AntiHBs positive)
         then (assert(Symptoms(symptom-id AntiHBs1)))
         else (assert(Symptoms(symptom-id AntiHBs0))))
 )
+
 (defrule AskAntiHBc
     (and 
         (not(AntiHBc ?))
@@ -67,17 +70,18 @@
             (and (HBsAg negative) (AntiHBs ?))
             (and (HBsAg positive) (AntiHDV negative))))
     =>
-    (bind ?AntiHBc (PositiveorNegative "AntiHBc?"))
+    (bind ?AntiHBc (PositiveorNegative "AntiHBc? "))
     (assert (AntiHBc ?AntiHBc))
     (if (eq ?AntiHBc positive)
         then (assert(Symptoms(symptom-id AntiHBc1)))
         else (assert(Symptoms(symptom-id AntiHBc0))))
 )
+
 (defrule AskAntiHDV
     (HBsAg positive)
     (not(AntiHDV ?))
     =>
-    (bind ?AntiHDV (PositiveorNegative "AntiHDV?"))
+    (bind ?AntiHDV (PositiveorNegative "AntiHDV? "))
     (assert (AntiHDV ?AntiHDV))
     (if (eq ?AntiHDV positive)
         then (assert(Symptoms(symptom-id AntiHDV1)))
@@ -90,12 +94,13 @@
     (AntiHBs negative)
     (not(IgMAntiHBc ?))
     =>
-    (bind ?IgMAntiHBc (PositiveorNegative "IgMAntiHBc?"))
+    (bind ?IgMAntiHBc (PositiveorNegative "IgMAntiHBc? "))
     (assert (IgMAntiHBc ?IgMAntiHBc))
     (if (eq ?IgMAntiHBc positive)
         then (assert(Symptoms(symptom-id IgMAntiHBc1)))
         else (assert(Symptoms(symptom-id IgMAntiHBc0))))
 )
+
 (defrule All-symptoms
 	(Diagnosis(diagnosis-name ?id))
 	(forall(Diagnosis(diagnosis-name ?id)(list-symptoms $? ?symptom $?))
