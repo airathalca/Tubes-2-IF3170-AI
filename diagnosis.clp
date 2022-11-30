@@ -8,8 +8,8 @@
 )
 
 (deffacts SymptomDiagnosis
-	(Diagnosis(diagnosis-name 0)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs1))			          ;Uncertain Configuration
-  (Diagnosis(diagnosis-name 0)(list-symptoms HBsAg1 AntiHDV0 AntiHBc0))				                  ;Uncertain Configuration
+	(Diagnosis(diagnosis-name 0a)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs1))			          ;Uncertain Configuration
+  (Diagnosis(diagnosis-name 0b)(list-symptoms HBsAg1 AntiHDV0 AntiHBc0))				                  ;Uncertain Configuration
 	(Diagnosis(diagnosis-name 1)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs0 IgMAntiHBc1))	  ;Acute Infection			
 	(Diagnosis(diagnosis-name 2)(list-symptoms HBsAg1 AntiHDV0 AntiHBc1 AntiHBs0 IgMAntiHBc0))	  ;Chronic Infection
 	(Diagnosis(diagnosis-name 3)(list-symptoms HBsAg1 AntiHDV1))			                            ;Hepatitis B+D
@@ -109,8 +109,14 @@
 	(assert (matchID ?id))
 )
 
-(defrule Result1
-	(matchID 0)
+(defrule Result0a
+	(matchID 0a)
+	=>
+	(printout t "Hasil Prediksi: Unclear Configuration" crlf)
+	(assert(match yes)))
+
+(defrule Result0b
+	(matchID 0b)
 	=>
 	(printout t "Hasil Prediksi: Unclear Configuration" crlf)
 	(assert(match yes)))
