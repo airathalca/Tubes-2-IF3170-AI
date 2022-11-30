@@ -7,6 +7,6 @@
 3. Set clips path to file directory
 4. This program use complexity strategy for the resolution conflicts so run `(set-strategy complexity)` to change the resolution strategy and make sure the next printed out text is 'complexity'
 5. Make sure you are on a clear state (no leftover facts), run `(clear)` to clean the CLIPS
-6. load the file using `(load "diagnosis.clp")`
-7. Resetthe clp using `(reset)`
+6. Load the file using `(load "diagnosis.clp")`
+7. Reset the clp using `(reset)`
 8. Finally run the expert system using `(run)`
